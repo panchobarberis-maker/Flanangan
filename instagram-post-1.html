@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Flanagan Law — Instagram Post</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* 1080x1350 scaled to fit screen */
+    .post {
+      width: 540px;
+      height: 675px;
+      position: relative;
+      overflow: hidden;
+      background: #4E556B;
+    }
+
+    /* Background photo */
+    .bg-photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('2-01.png');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.28;
+    }
+
+    /* Deep blue gradient overlay */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(78, 85, 107, 0.45) 0%,
+        rgba(78, 85, 107, 0.82) 40%,
+        rgba(78, 85, 107, 0.98) 100%
+      );
+    }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 42px 44px;
+    }
+
+    /* Top — logo row */
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-f {
+      width: 28px;
+      height: 28px;
+    }
+
+    .firm-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #C89D66;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    /* Middle — main message */
+    .middle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0 20px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      color: #C89D66;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .gold-line {
+      width: 36px;
+      height: 2px;
+      background: #C89D66;
+      margin-bottom: 22px;
+    }
+
+    .headline {
+      font-size: 32px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 28px;
+    }
+
+    .headline em {
+      font-style: normal;
+      color: #C89D66;
+    }
+
+    .body-text {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: #d0d4de;
+      line-height: 1.85;
+      max-width: 420px;
+    }
+
+    /* Bottom — CTA + tagline */
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .divider-line {
+      width: 100%;
+      height: 1px;
+      background: rgba(200, 157, 102, 0.3);
+    }
+
+    .bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tagline {
+      font-size: 11px;
+      font-weight: 500;
+      color: #C89D66;
+      letter-spacing: 1.5px;
+      font-style: italic;
+    }
+
+    .cta-pill {
+      background: #C89D66;
+      color: #ffffff;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="post">
+  <div class="bg-photo"></div>
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <!-- TOP -->
+    <div class="top">
+      <svg class="logo-f" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="4,2 24,2 24,7 9,7 9,13 20,13 20,18 9,18 9,26 4,26" fill="#C89D66"/>
+      </svg>
+      <span class="firm-name">Flanagan Law, P.C.</span>
+    </div>
+
+    <!-- MIDDLE -->
+    <div class="middle">
+      <div class="eyebrow">What We Believe</div>
+      <div class="gold-line"></div>
+      <div class="headline">
+        You are more than<br/>
+        a case number.<br/>
+        <em>We see you.</em>
+      </div>
+      <p class="body-text">
+        After a serious injury, the last thing you need is to feel like just another file on a desk. At Flanagan Law, every client is a person first — with a story, a family, and a future worth fighting for. We listen. We care. And then we fight fiercely until you are fully compensated.
+      </p>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="bottom">
+      <div class="divider-line"></div>
+      <div class="bottom-row">
+        <span class="tagline">"Your fight is our fight."</span>
+        <div class="cta-pill">Free Consultation</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
