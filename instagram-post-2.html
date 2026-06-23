@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Flanagan Law — Instagram Post</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .post {
+      width: 540px;
+      height: 675px;
+      position: relative;
+      overflow: hidden;
+      background: #3a3f50;
+    }
+
+    .bg-photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('2-01.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(78,85,107,0.3) 0%,
+        rgba(40,45,60,0.92) 100%
+      );
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 36px 36px;
+    }
+
+    /* TOP */
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .firm-name {
+      font-size: 10px;
+      font-weight: 700;
+      color: #C89D66;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    /* MIDDLE */
+    .middle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 24px;
+    }
+
+    .label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #C89D66;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .headline {
+      font-size: 52px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .headline em {
+      font-style: normal;
+      color: #C89D66;
+    }
+
+    .underline-svg {
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* BOTTOM */
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(200,157,102,0.3);
+      padding-top: 18px;
+    }
+
+    .tagline {
+      font-size: 11px;
+      font-weight: 500;
+      color: #C89D66;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+
+    .cta {
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: #C89D66;
+      padding: 9px 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="post">
+  <div class="bg-photo"></div>
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <div class="top">
+      <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+        <polygon points="4,2 24,2 24,7 9,7 9,13 20,13 20,18 9,18 9,26 4,26" fill="#C89D66"/>
+      </svg>
+      <span class="firm-name">Flanagan Law, P.C.</span>
+    </div>
+
+    <div class="middle">
+      <div class="label">We See You</div>
+      <div class="headline">
+        You're more<br/>
+        than a case.<br/>
+        <em>We fight<br/>like it.</em>
+      </div>
+      <svg class="underline-svg" width="200" height="10" viewBox="0 0 200 10">
+        <path d="M0 7 Q50 2 100 7 Q150 12 200 7" stroke="#C89D66" stroke-width="2.5" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="bottom">
+      <span class="tagline">"Your fight is our fight."</span>
+      <div class="cta">Free Consultation</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
