@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Flanagan Law — Carousel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      gap: 16px;
+      padding: 40px 0;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      width: 540px;
+      height: 675px;
+    }
+
+    /* ── SLIDE ── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      overflow: hidden;
+    }
+    .slide.active { display: block; }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('2-01.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* per-slide overlay colors */
+    .slide-1 .bg { opacity: 0.25; }
+    .slide-1 .ov { background: linear-gradient(160deg, rgba(78,85,107,0.5), rgba(30,34,46,0.97)); }
+
+    .slide-2 .bg { opacity: 0.15; }
+    .slide-2 .ov { background: #4E556B; }
+
+    .slide-3 .bg { opacity: 0.15; }
+    .slide-3 .ov { background: #2e3240; }
+
+    .slide-4 .bg { opacity: 0.15; }
+    .slide-4 .ov { background: #4E556B; }
+
+    .slide-5 .bg { opacity: 0.15; }
+    .slide-5 .ov { background: #1e2230; }
+
+    .ov {
+      position: absolute;
+      inset: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 38px 34px;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .firm-name {
+      font-size: 10px;
+      font-weight: 700;
+      color: #C89D66;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .swipe-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #C89D66;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid rgba(200,157,102,0.5);
+      padding: 5px 10px;
+      border-radius: 20px;
+    }
+
+    .swipe-tag svg { flex-shrink: 0; }
+
+    /* SLIDE NUMBER */
+    .slide-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(200,157,102,0.6);
+      letter-spacing: 2px;
+    }
+
+    /* MIDDLE */
+    .middle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #C89D66;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .headline {
+      font-size: 50px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.0;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .headline em {
+      font-style: normal;
+      color: #C89D66;
+    }
+
+    .wave {
+      margin-bottom: 28px;
+    }
+
+    .body {
+      font-size: 15px;
+      font-weight: 400;
+      color: #c8ccd8;
+      line-height: 1.75;
+      max-width: 420px;
+    }
+
+    .body strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* STAT BLOCK */
+    .stat-block {
+      margin-top: 28px;
+      padding: 20px 24px;
+      border-left: 3px solid #C89D66;
+      background: rgba(200,157,102,0.08);
+    }
+
+    .stat-number {
+      font-size: 42px;
+      font-weight: 900;
+      color: #C89D66;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #c8ccd8;
+      letter-spacing: 1px;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      list-style: none;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 14px;
+      color: #c8ccd8;
+      line-height: 1.6;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      min-width: 8px;
+      background: #C89D66;
+      border-radius: 50%;
+      margin-top: 6px;
+    }
+
+    .checklist li strong { color: #fff; }
+
+    /* CTA SLIDE */
+    .cta-big {
+      font-size: 44px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .cta-big em { font-style: normal; color: #C89D66; }
+
+    .cta-btn {
+      display: inline-block;
+      background: #C89D66;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      font-size: 12px;
+      color: rgba(200,157,102,0.7);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* BOTTOM BAR */
+    .bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(200,157,102,0.25);
+      padding-top: 16px;
+    }
+
+    .tagline {
+      font-size: 11px;
+      font-weight: 500;
+      color: #C89D66;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    .dots-nav {
+      display: flex;
+      gap: 5px;
+    }
+
+    .dot-nav {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(200,157,102,0.3);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dot-nav.active { background: #C89D66; }
+
+    /* NAV ARROWS */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(200,157,102,0.15);
+      border: 1px solid rgba(200,157,102,0.4);
+      color: #C89D66;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 16px;
+      transition: background 0.2s;
+      border-radius: 50%;
+    }
+    .nav-btn:hover { background: rgba(200,157,102,0.3); }
+    .nav-prev { left: -18px; }
+    .nav-next { right: -18px; }
+
+    /* COUNTER */
+    .counter {
+      font-size: 12px;
+      color: #555;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+<div style="position:relative;">
+
+  <div class="carousel-wrapper">
+
+    <!-- ── SLIDE 1: HOOK ── -->
+    <div class="slide slide-1 active">
+      <div class="bg"></div>
+      <div class="ov"></div>
+      <div class="content">
+        <div class="top-bar">
+          <div class="logo-row">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><polygon points="4,2 24,2 24,7 9,7 9,13 20,13 20,18 9,18 9,26 4,26" fill="#C89D66"/></svg>
+            <span class="firm-name">Flanagan Law, P.C.</span>
+          </div>
+          <div class="swipe-tag">
+            SWIPE
+            <svg width="14" height="10" viewBox="0 0 14 10"><path d="M0 5h11M8 1l4 4-4 4" stroke="#C89D66" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+
+        <div class="middle">
+          <div class="label">Personal Injury</div>
+          <div class="headline">
+            Injured?<br/>
+            The clock<br/>
+            is <em>already<br/>ticking.</em>
+          </div>
+          <svg class="wave" width="180" height="10" viewBox="0 0 180 10">
+            <path d="M0 7 Q45 2 90 7 Q135 12 180 7" stroke="#C89D66" stroke-width="2.5" fill="none"/>
+          </svg>
+          <p class="body">In Georgia, you have <strong>2 years</strong> to file a personal injury claim. Most people don't know what they're entitled to — until it's too late.</p>
+        </div>
+
+        <div class="bottom-bar">
+          <span class="tagline">"Your fight is our fight."</span>
+          <div class="dots-nav">
+            <div class="dot-nav active" onclick="goTo(0)"></div>
+            <div class="dot-nav" onclick="goTo(1)"></div>
+            <div class="dot-nav" onclick="goTo(2)"></div>
+            <div class="dot-nav" onclick="goTo(3)"></div>
+            <div class="dot-nav" onclick="goTo(4)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 2: WHAT YOU'RE ENTITLED TO ── -->
+    <div class="slide slide-2">
+      <div class="bg"></div>
+      <div class="ov"></div>
+      <div class="content">
+        <div class="top-bar">
+          <div class="logo-row">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><polygon points="4,2 24,2 24,7 9,7 9,13 20,13 20,18 9,18 9,26 4,26" fill="#C89D66"/></svg>
+            <span class="firm-name">Flanagan Law, P.C.</span>
+          </div>
+          <span class="slide-num">02 / 05</span>
+        </div>
+
+        <div class="middle">
+          <div class="label">Know Your Rights</div>
+          <div class="headline">What you<br/>can <em>recover.</em></div>
+          <svg class="wave" width="140" height="10" viewBox="0 0 140 10" style="margin-bottom:24px;">
+            <path d="M0 7 Q35 2 70 7 Q105 12 140 7" stroke="#C89D66" stroke-width="2.5" fill="none"/>
+          </svg>
+
+          <ul class="checklist">
+            <li><span class="dot"></span><span><strong>Medical expenses</strong> — past and future</span></li>
+            <li><span class="dot"></span><span><strong>Lost wages</strong> and loss of earning capacity</span></li>
+            <li><span class="dot"></span><span><strong>Pain & suffering</strong> — physical and emotional</span></li>
+            <li><span class="dot"></span><span><strong>Permanent disability</strong> or disfigurement</span></li>
+          </ul>
+        </div>
+
+        <div class="bottom-bar">
+          <span class="tagline">"Your fight is our fight."</span>
+          <div class="dots-nav">
+            <div class="dot-nav" onclick="goTo(0)"></div>
+            <div class="dot-nav active" onclick="goTo(1)"></div>
+            <div class="dot-nav" onclick="goTo(2)"></div>
+            <div class="dot-nav" onclick="goTo(3)"></div>
+            <div class="dot-nav" onclick="goTo(4)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 3: THE PROBLEM ── -->
+    <div class="slide slide-3">
+      <div class="bg"></div>
+      <div class="ov"></div>
+      <div class="content">
+        <div class="top-bar">
+          <div class="logo-row">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><polygon points="4,2 24,2 24,7 9,7 9,13 20,13 20,18 9,18 9,26 4,26" fill="#C89D66"/></svg>
+            <span class="firm-name">Flanagan Law, P.C.</span>
+          </div>
+          <span class="slide-num">03 / 05</span>
+        </div>
+
+        <div class="middle">
+          <div class="label">The Problem</div>
+          <div class="headline">Insurance<br/>companies<br/><em>don't work<br/>for you.</em></div>
+          <svg class="wave" width="160" height="10" viewBox="0 0 160 10" style="margin-bottom:24px;">
+            <path d="M0 7 Q40 2 80 7 Q120 12 160 7" stroke="#C89D66" stroke-width="2.5" fill="none"/>
+          </svg>
+          <p class="body">They move fast. They lowball. They close claims before you even know the full extent of your injuries. <strong>Don't sign anything without talking to us first.</strong></p>
+        </div>
+
+        <div class="bottom-bar">
+          <span class="tagline">"Your fight is our fight."</span>
+          <div class="dots-nav">
+            <div class="dot-nav" onclick="goTo(0)"></div>
+            <div class="dot-nav" onclick="goTo(1)"></div>
+            <div class="dot-nav active" onclick="goTo(2)"></div>
+            <div class="dot-nav" onclick="goTo(3)"></div>
+            <div class="dot-nav" onclick="goTo(4)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 4: WHY FLANAGAN ── -->
+    <div class="slide slide-4">
+      <div class="bg"></div>
+      <div class="ov"></div>
+      <div class="content">
+        <div class="top-bar">
+          <div class="logo-row">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><polygon points="4,2 24,2 24,7 9,7 9,13 20,13 20,18 9,18 9,26 4,26" fill="#C89D66"/></svg>
+            <span class="firm-name">Flanagan Law, P.C.</span>
+          </div>
+          <span class="slide-num">04 / 05</span>
+        </div>
+
+        <div class="middle">
+          <div class="label">Why Flanagan</div>
+          <div class="headline">We <em>litigate.</em><br/>Most firms<br/>don't.</div>
+          <svg class="wave" width="130" height="10" viewBox="0 0 130 10" style="margin-bottom:20px;">
+            <path d="M0 7 Q32 2 65 7 Q98 12 130 7" stroke="#C89D66" stroke-width="2.5" fill="none"/>
+          </svg>
+
+          <div class="stat-block">
+            <div class="stat-number">$281K</div>
+            <div class="stat-label">Recovered on a $100K policy — after taking the case to trial.</div>
+          </div>
+
+          <p class="body" style="margin-top:18px;">Insurance companies know which firms go to trial. <strong>We do.</strong> That changes every offer they make.</p>
+        </div>
+
+        <div class="bottom-bar">
+          <span class="tagline">"Your fight is our fight."</span>
+          <div class="dots-nav">
+            <div class="dot-nav" onclick="goTo(0)"></div>
+            <div class="dot-nav" onclick="goTo(1)"></div>
+            <div class="dot-nav" onclick="goTo(2)"></div>
+            <div class="dot-nav active" onclick="goTo(3)"></div>
+            <div class="dot-nav" onclick="goTo(4)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 5: CTA ── -->
+    <div class="slide slide-5">
+      <div class="bg"></div>
+      <div class="ov"></div>
+      <div class="content">
+        <div class="top-bar">
+          <div class="logo-row">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><polygon points="4,2 24,2 24,7 9,7 9,13 20,13 20,18 9,18 9,26 4,26" fill="#C89D66"/></svg>
+            <span class="firm-name">Flanagan Law, P.C.</span>
+          </div>
+          <span class="slide-num">05 / 05</span>
+        </div>
+
+        <div class="middle">
+          <div class="cta-big">
+            Don't<br/>settle for<br/><em>less.</em>
+          </div>
+          <div class="cta-btn">Free Consultation</div>
+          <p class="cta-sub">No fees unless we win.</p>
+        </div>
+
+        <div class="bottom-bar">
+          <span class="tagline">"Your fight is our fight."</span>
+          <div class="dots-nav">
+            <div class="dot-nav" onclick="goTo(0)"></div>
+            <div class="dot-nav" onclick="goTo(1)"></div>
+            <div class="dot-nav" onclick="goTo(2)"></div>
+            <div class="dot-nav" onclick="goTo(3)"></div>
+            <div class="dot-nav active" onclick="goTo(4)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end carousel-wrapper -->
+
+  <button class="nav-btn nav-prev" onclick="navigate(-1)">‹</button>
+  <button class="nav-btn nav-next" onclick="navigate(1)">›</button>
+
+</div>
+
+<div class="counter" id="counter">1 / 5</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+  }
+
+  function navigate(dir) {
+    goTo((current + dir + total) % total);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+  });
+</script>
+
+</body>
+</html>
