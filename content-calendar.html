@@ -10,7 +10,7 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background: #f0f1f3;
+      background: #3d4357;
       color: #4E556B;
       padding: 40px 24px;
     }
@@ -37,7 +37,7 @@
     .firm {
       font-size: 13px;
       font-weight: 700;
-      color: #4E556B;
+      color: #C89D66;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
@@ -45,7 +45,7 @@
     .period {
       font-size: 28px;
       font-weight: 700;
-      color: #4E556B;
+      color: #ffffff;
     }
 
     /* ── LEGEND ── */
@@ -65,7 +65,7 @@
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: #4E556B;
+      color: #ffffff;
     }
 
     .legend-dot {
@@ -78,16 +78,16 @@
     .calendar {
       max-width: 1200px;
       margin: 0 auto;
-      background: #fff;
+      background: #4E556B;
       border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 2px 20px rgba(78,85,107,0.08);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.3);
     }
 
     .day-headers {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      background: #4E556B;
+      background: #3a4058;
     }
 
     .day-header {
@@ -101,7 +101,7 @@
     }
 
     .day-header.active-day {
-      background: rgba(200,157,102,0.15);
+      background: rgba(200,157,102,0.12);
     }
 
     .weeks {
@@ -112,7 +112,7 @@
     .week {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      border-bottom: 1px solid #eaebec;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
     .week:last-child { border-bottom: none; }
@@ -120,21 +120,21 @@
     .day {
       min-height: 140px;
       padding: 10px;
-      border-right: 1px solid #eaebec;
+      border-right: 1px solid rgba(255,255,255,0.07);
       position: relative;
       vertical-align: top;
     }
 
     .day:last-child { border-right: none; }
 
-    .day.empty { background: #f7f8f9; }
+    .day.empty { background: rgba(0,0,0,0.15); }
 
-    .day.active-col { background: #fdfcf9; }
+    .day.active-col { background: rgba(200,157,102,0.05); }
 
     .day-num {
       font-size: 12px;
       font-weight: 700;
-      color: #9ca3b0;
+      color: rgba(255,255,255,0.35);
       margin-bottom: 8px;
     }
 
@@ -182,13 +182,13 @@
       letter-spacing: 0.5px;
     }
 
-    /* colors per type */
-    .type-story    { background: #e8f0fb; color: #3a5ca8; }
-    .type-carousel { background: #fdf0e0; color: #a0620a; }
-    .type-review   { background: #e6f6ee; color: #1a7a45; }
-    .type-myth     { background: #fde8e8; color: #b02020; }
-    .type-video    { background: #ede8fb; color: #5a30b0; }
-    .type-news     { background: #e8f5fb; color: #1a6a8a; }
+    /* colors per type — brand palette */
+    .type-story    { background: rgba(200,157,102,0.18); color: #e8c98a; border-left: 3px solid #C89D66; }
+    .type-carousel { background: rgba(255,255,255,0.10); color: #ffffff; border-left: 3px solid #ffffff; }
+    .type-review   { background: rgba(200,157,102,0.10); color: #C89D66; border-left: 3px solid #a07840; }
+    .type-myth     { background: rgba(78,85,107,0.5);    color: #d0d4de; border-left: 3px solid #8890a8; }
+    .type-video    { background: rgba(200,157,102,0.25); color: #f5d9a8; border-left: 3px solid #C89D66; }
+    .type-news     { background: rgba(255,255,255,0.07); color: #c0c5d4; border-left: 3px solid #6a7090; }
 
     /* ── FOOTER SUMMARY ── */
     .summary {
@@ -200,11 +200,11 @@
     }
 
     .summary-card {
-      background: #fff;
+      background: #4E556B;
       border-radius: 4px;
       padding: 18px 16px;
-      box-shadow: 0 2px 12px rgba(78,85,107,0.06);
-      border-top: 3px solid;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      border-top: 3px solid #C89D66;
     }
 
     .summary-card .s-type {
@@ -213,19 +213,20 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 6px;
+      color: #C89D66;
     }
 
     .summary-card .s-count {
       font-size: 32px;
       font-weight: 900;
-      color: #4E556B;
+      color: #ffffff;
       line-height: 1;
       margin-bottom: 4px;
     }
 
     .summary-card .s-label {
       font-size: 11px;
-      color: #9ca3b0;
+      color: rgba(255,255,255,0.5);
       font-weight: 400;
     }
 
@@ -246,7 +247,7 @@
     </svg>
     <div>
       <div class="firm">Flanagan Law, P.C.</div>
-      <div style="font-size:11px;color:#9ca3b0;font-weight:400;letter-spacing:1px;">Content Calendar</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.45);font-weight:400;letter-spacing:1px;">Content Calendar</div>
     </div>
   </div>
   <div class="period">July 2026</div>
@@ -254,11 +255,11 @@
 
 <!-- LEGEND -->
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:#3a5ca8"></div> Monday Story</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#a0620a"></div> Tuesday Carousel</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#1a7a45"></div> Wednesday Review</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#b02020"></div> Friday Myth</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#5a30b0"></div> Sunday Video UGC</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#C89D66"></div> Monday Story</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ffffff"></div> Tuesday Carousel</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#a07840"></div> Wednesday Review</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#8890a8"></div> Friday Myth</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f5d9a8"></div> Sunday Video UGC</div>
 </div>
 
 <!-- CALENDAR -->
@@ -526,7 +527,7 @@
 </div>
 
 <!-- TOTAL -->
-<div style="max-width:1200px;margin:16px auto 0;text-align:right;font-size:12px;color:#9ca3b0;font-weight:500;letter-spacing:1px;">
+<div style="max-width:1200px;margin:16px auto 0;text-align:right;font-size:12px;color:rgba(255,255,255,0.35);font-weight:500;letter-spacing:1px;">
   TOTAL: 23 posts · July 2026 · Flanagan Law, P.C.
 </div>
 
