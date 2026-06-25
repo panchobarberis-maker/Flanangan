@@ -131,6 +131,10 @@
       color: rgba(255,255,255,0.3);
     }
 
+    .myth-label .cross::before {
+      content: '\2715';
+    }
+
     .myth-text {
       font-size: 32px;
       font-weight: 500;
@@ -165,6 +169,10 @@
       color: #C89D66;
       font-size: 20px;
       flex-shrink: 0;
+    }
+
+    .divider-icon::before {
+      content: '\2713';
     }
 
     /* REALITY block */
@@ -251,7 +259,7 @@
         <div class="myth-block">
           <div class="myth-label">
             <span class="badge">Myth</span>
-            <span class="cross">✕</span>
+            <span class="cross"></span>
           </div>
           <div class="myth-text">
             "If you were partially at fault, you can't recover anything."
@@ -261,7 +269,7 @@
         <!-- Divider -->
         <div class="divider">
           <div class="divider-line"></div>
-          <div class="divider-icon">✓</div>
+          <div class="divider-icon"></div>
           <div class="divider-line" style="background: linear-gradient(to left, #C89D66, rgba(200,157,102,0.2));"></div>
         </div>
 
